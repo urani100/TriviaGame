@@ -30,7 +30,7 @@ $("document").ready(function(){
 
                 for(var i = 0; i < trivia[triviaIndex].triviaChoices.length; i++){
                 
-                var btn =  $('<div>');//$('<button>');
+                var btn =  $('<button>');
                 btn.addClass('triviaOptions'); // used for the onclick
                 btn.attr("data-value", arr[i]); // set the actual value of the button
                 btn.text(arr[i]); // shows the label
@@ -41,9 +41,9 @@ $("document").ready(function(){
 
         function  evaluate(value){
                 var correctAnswer = trivia[triviaIndex].answer;
-                // triviaIndex++; 
-                // resetField();
-                // poputate();
+                triviaIndex++; 
+                resetField();
+                poputate();
                 if(value === correctAnswer){
                         alert("yes");
                 }else{
@@ -61,29 +61,30 @@ $("document").ready(function(){
       
        
 
-        // $('.triviaOptions').on('click', function(){
-        //         debugger;
-        //         var value = ($(this).attr('data-value'));
-        //         evaluate(value);
+      $(document).on('click', ".triviaOptions", function(){
+                debugger;
+                var value = ($(this).attr('data-value'));
+                evaluate(value);
 
-        // });
+        });
 
         
          $('.start').on("click", function(){
                 poputate();
-
-                $('.triviaOptions').on('click', function(){
-                        value = ($(this).attr('data-value'));
-                        console.log(value);
-                        evaluate(value);
-                        triviaIndex++; 
-                        resetField();
-                        poputate();
-                        
-                        
-                });
-        
                 $('.start').hide(); // bring back at the end of the game
+
+                // $('.triviaOptions').on('click', 'button', function(){
+                //         value = ($(this).attr('data-value'));
+                //         console.log(value);
+                //         evaluate(value);
+                //         triviaIndex++; 
+                //         resetField();
+                //         poputate();
+                        
+                        
+                // });
+        
+               
                 
         });
 
