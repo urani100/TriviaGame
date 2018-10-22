@@ -1,22 +1,26 @@
 
 $("document").ready(function(){
 
+        // add timer
+        // add picture 
+        //reset start button at the end
+        // 
+
+
         trivia= [
         {triviaQuestion: "how do you say CAKE in french", triviaChoices:["galette", "pain", 'gateau', 'ciel'], answer:"gateau"},
-        {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"},
-        {triviaQuestion: "how do you say SKY in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"ciel"}
+        {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"}
+        {triviaQuestion: "how do you say SKY in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"ciel"},
+        {triviaQuestion: "how do you say bird in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"oiseau"}
         ];
+
 
         var triviaIndex = 0;
         
-        //how do I move to the next?
-        //clear previous values
-       //on click only works one time...
 
         function  resetField (){ 
         $('.triviaChoices').empty();    
         }
-
 
 
 
@@ -40,32 +44,35 @@ $("document").ready(function(){
         }
 
         function  evaluate(value){
+               
                 var correctAnswer = trivia[triviaIndex].answer;
-                triviaIndex++; 
-                resetField();
-                poputate();
-                if(value === correctAnswer){
-                        alert("yes");
-                }else{
-                        alert("no");
-                }
+                        triviaIndex++;
+                       
+                        console.log(triviaIndex);
+                        if(value === correctAnswer){
+                                console.log("yes");
+                         }else{
+                                console.log("no");
+                         }
+
+                        if(triviaIndex < trivia.length){
+                                resetField ();
+                                poputate();
+
+                        }else{
+                                //$('.start').show()???
+                                triviaIndex = 0;
+                                resetField ();
+                                 poputate();
+
+                        }
+                
         };
 
-
-       // poputate();
-        
- 
-
-       //does not work unless poputate() is beeing call in it's scope?
-      // works for the other games!??
-      
-       
-
+     // Add a listener to the document for dynamically created triviaOptions element
       $(document).on('click', ".triviaOptions", function(){
-                debugger;
                 var value = ($(this).attr('data-value'));
                 evaluate(value);
-
         });
 
         
@@ -73,19 +80,6 @@ $("document").ready(function(){
                 poputate();
                 $('.start').hide(); // bring back at the end of the game
 
-                // $('.triviaOptions').on('click', 'button', function(){
-                //         value = ($(this).attr('data-value'));
-                //         console.log(value);
-                //         evaluate(value);
-                //         triviaIndex++; 
-                //         resetField();
-                //         poputate();
-                        
-                        
-                // });
-        
-               
-                
         });
 
      
