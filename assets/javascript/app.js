@@ -68,12 +68,13 @@ $("document").ready(function(){
 
         // });
 
+        
          $('.start').on("click", function(){
                 poputate();
 
                 $('.triviaOptions').on('click', function(){
-                        debugger;
                         value = ($(this).attr('data-value'));
+                        console.log(value);
                         evaluate(value);
                         triviaIndex++; 
                         resetField();
