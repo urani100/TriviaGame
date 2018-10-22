@@ -1,72 +1,93 @@
 
 $("document").ready(function(){
-var obj = {
-        trivia: [
-        {triviaQuestion: "how do you say CAKE in french", triviaChoices:["galette", "pain", 'gateau', 'ciel'], answer:"gateau"},
-        {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"}
-        ],
 
-        triviaIndex : 0,
+        trivia= [
+        {triviaQuestion: "how do you say CAKE in french", triviaChoices:["galette", "pain", 'gateau', 'ciel'], answer:"gateau"},
+        {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"},
+        {triviaQuestion: "how do you say SKY in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"ciel"}
+        ];
+
+        var triviaIndex = 0;
         
         //how do I move to the next?
         //clear previous values
-        //triviaOptions does not work anymore grrrrrrrrr!!!!!!!!
+       //on click only works one time...
 
-         resetField: function(){ 
-                $('.triviaChoices').empty();    
-        },
+        function  resetField (){ 
+        $('.triviaChoices').empty();    
+        }
 
-        poputate: function (){
-              
-                var arr = this.trivia[this.triviaIndex].triviaChoices;
-                var triviaQ = this.trivia[this.triviaIndex].triviaQuestion;
+
+
+
+      function poputate(){
+        
+                var arr = trivia[triviaIndex].triviaChoices;
+                var triviaQ = trivia[triviaIndex].triviaQuestion;
+                var correctAnswer = trivia[triviaIndex].answer;
+        
+                $(".question").text(triviaQ); // populating question
+
+                for(var i = 0; i < trivia[triviaIndex].triviaChoices.length; i++){
                 
-                $(".question").text(triviaQ);
-
-                for(var i = 0; i < this.trivia[this.triviaIndex].triviaChoices.length; i++){
-                
-                var btn = $('<button>');
+                var btn =  $('<div>');//$('<button>');
                 btn.addClass('triviaOptions'); // used for the onclick
-                btn.attr("data-value", arr[i]);
+                btn.attr("data-value", arr[i]); // set the actual value of the button
                 btn.text(arr[i]); // shows the label
-                $('.triviaChoices').append(btn); // appends the class to the html
+                 $('.triviaChoices').append(btn); // appends the class to the html
+                 
                 }
-        },
+        }
 
-        evaluate:function(value){
-                var correctAnswer = this.trivia[this.triviaIndex].answer;
+        function  evaluate(value){
+                var correctAnswer = trivia[triviaIndex].answer;
+                // triviaIndex++; 
+                // resetField();
+                // poputate();
                 if(value === correctAnswer){
                         alert("yes");
                 }else{
                         alert("no");
                 }
-                this.triviaIndex++;
-                this.resetField();
-                this.poputate();
-        }
+        };
+
+
+       // poputate();
         
+ 
+
+       //does not work unless poputate() is beeing call in it's scope?
+      // works for the other games!??
+      
        
-}
 
-obj.poputate();
-
-        $('.triviaOptions').on('click', function(){
-                var value = ($(this).attr('data-value'));
-                obj.evaluate(value);
-               
-        });
-
-        // $('.start').on("click", function(){
+        // $('.triviaOptions').on('click', function(){
         //         debugger;
-        //         obj.poputate();
-        //         $('.start').hide(); // bring back at the end of the game
-                
+        //         var value = ($(this).attr('data-value'));
+        //         evaluate(value);
+
         // });
 
-      
-     
+         $('.start').on("click", function(){
+                poputate();
 
+                $('.triviaOptions').on('click', function(){
+                        debugger;
+                        value = ($(this).attr('data-value'));
+                        evaluate(value);
+                        triviaIndex++; 
+                        resetField();
+                        poputate();
+                        
+                        
+                });
         
+                $('.start').hide(); // bring back at the end of the game
+                
+        });
+
+     
+       
 
 })//end of ducument.ready
 
