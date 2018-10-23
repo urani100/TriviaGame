@@ -1,10 +1,10 @@
 
 $("document").ready(function(){
 
-        // add timer
+       
         // add picture 
         //reset start button at the end
-        // add scores
+      
 
 
         trivia= [
@@ -16,14 +16,18 @@ $("document").ready(function(){
 
 
         var triviaIndex = 0;
+        var wins = 0;
+        var losses = 0;
+        var number = 10;
+        var intervalId;
         
-
+        // resets questions
         function  resetField (){ 
         $('.triviaChoices').empty();    
         }
 
 
-
+      //populates question and assign "values" to them 
       function poputate(){
         
                 var arr = trivia[triviaIndex].triviaChoices;
@@ -44,17 +48,20 @@ $("document").ready(function(){
                 
         }
 
+        // evaluates function comapares user's value and correct answer and take apporiate actions 
         function  evaluate(value){
-               
                 var correctAnswer = trivia[triviaIndex].answer;
                         triviaIndex++;
                        
                         console.log(triviaIndex);
                         if(value === correctAnswer){
-                              
+                                wins++;
+                                $('#wins').html(wins); // show only at the end of the game?
                                 stopTimer();
                                 console.log("yes");
                          }else{
+                                losses++;
+                                $('#losses').html(losses); // show only at the end of the game?
                                 stopTimer();
                                 console.log("no");
                          }
@@ -74,25 +81,28 @@ $("document").ready(function(){
                         }
                 
         };
-
-        var number = 10;
-        var intervalId;
-
+        
+        
+        // timer function
         function timer(){ 
                 intervalId = setInterval(decrement, 1000);
-                
-      }
+        }
+
+
+        //Decrement function associated with timer
         function decrement (){
                 number --; 
                 $('#timer').html('The reamining time is: ' + number + ' seconds');
-                if(number === 0 && triviaIndex < trivia.length){
+                if(number === 0 && triviaIndex < trivia.length-1){
                         stopTimer();
                         triviaIndex++;
                         resetField ();
-                        poputate(); // triviaChoice is undefined? what is the value of index here?
+                        poputate(); 
                         timer();
+                        losses++;
+                        $('#losses').html(losses); // show only at the end of the game?
 
-                }else if(number === 0 && triviaIndex === trivia.length){
+                }else if(number === 0 && triviaIndex === trivia.length-1){
                         stopTimer();
                         triviaIndex = 0;
                         resetField ();
@@ -102,12 +112,13 @@ $("document").ready(function(){
                 }
         }
         
+        // stop timer function
         function stopTimer(){
                 number = 10;
                 clearInterval(intervalId);
         }
 
-        $("#stop").on("click", stopTimer);
+      
         
 
      // Add a listener to the document for dynamically created triviaOptions element
