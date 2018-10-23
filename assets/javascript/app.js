@@ -9,9 +9,9 @@ $("document").ready(function(){
 
         trivia= [
         {triviaQuestion: "how do you say CAKE in french", triviaChoices:["galette", "pain", 'gateau', 'ciel'], answer:"gateau"},
-        {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"},
-        {triviaQuestion: "how do you say SKY in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"ciel"},
-        {triviaQuestion: "how do you say bird in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"oiseau"}
+        {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"}
+        // {triviaQuestion: "how do you say SKY in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"ciel"},
+        // {triviaQuestion: "how do you say bird in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"oiseau"}
         ];
 
 
@@ -65,13 +65,12 @@ $("document").ready(function(){
                                 timer();
 
                         }else{
-                                //$('.start').show()???
+                               
                                 triviaIndex = 0;
                                 resetField ();
                                  poputate();
                                  timer();
-                                 //timer?
-
+                                 
                         }
                 
         };
@@ -86,25 +85,30 @@ $("document").ready(function(){
         function decrement (){
                 number --; 
                 $('#timer').html('The reamining time is: ' + number + ' seconds');
+                if(number === 0 && triviaIndex < trivia.length){
+                        stopTimer();
+                        triviaIndex++;
+                        resetField ();
+                        poputate(); // triviaChoice is undefined? what is the value of index here?
+                        timer();
+
+                }else if(number === 0 && triviaIndex === trivia.length){
+                        stopTimer();
+                        triviaIndex = 0;
+                        resetField ();
+                        poputate();
+                        timer();
+                        
+                }
         }
         
         function stopTimer(){
                 number = 10;
                 clearInterval(intervalId);
-                if(number === 0 && triviaIndex < trivia.length){
-                        alert("timere is 0");
-                }
         }
 
         $("#stop").on("click", stopTimer);
         
-        //timer();
-        // I need a stop function that is call when ...
-        
-    
-
-      //when does the timer start? When the stion is populated -- yes?
-      // how do I ensure the timer is restarts for every question?
 
      // Add a listener to the document for dynamically created triviaOptions element
       $(document).on('click', ".triviaOptions", function(){
