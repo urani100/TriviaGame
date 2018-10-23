@@ -14,6 +14,8 @@ $("document").ready(function(){
         // {triviaQuestion: "how do you say bird in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"oiseau"}
         ];
 
+        pictures =["assets/images/gateau.jpg", "assets/images/pain.jpg"];
+
 
         var triviaIndex = 0;
         var wins = 0;
@@ -52,7 +54,7 @@ $("document").ready(function(){
         function  evaluate(value){
                 var correctAnswer = trivia[triviaIndex].answer;
                         triviaIndex++;
-                       
+                        pictureChange(); // test
                         console.log(triviaIndex);
                         if(value === correctAnswer){
                                 wins++;
@@ -118,8 +120,13 @@ $("document").ready(function(){
                 clearInterval(intervalId);
         }
 
-      
+        function pictureChange(){
+                $("#image").html("<img src=" + pictures[triviaIndex] + " width='100px'>");
+        }
+
+       // setTimeout(pictureChange, 4000);
         
+       // pictureChange();
 
      // Add a listener to the document for dynamically created triviaOptions element
       $(document).on('click', ".triviaOptions", function(){
