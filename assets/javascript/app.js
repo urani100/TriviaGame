@@ -4,7 +4,7 @@ $("document").ready(function(){
         // add timer
         // add picture 
         //reset start button at the end
-        // 
+        // add scores
 
 
         trivia= [
@@ -41,6 +41,7 @@ $("document").ready(function(){
                  $('.triviaChoices').append(btn); // appends the class to the html
                  
                 }
+                
         }
 
         function  evaluate(value){
@@ -50,34 +51,72 @@ $("document").ready(function(){
                        
                         console.log(triviaIndex);
                         if(value === correctAnswer){
+                              
+                                stopTimer();
                                 console.log("yes");
                          }else{
+                                stopTimer();
                                 console.log("no");
                          }
 
                         if(triviaIndex < trivia.length){
                                 resetField ();
-                                poputate();
+                                poputate(); 
+                                timer();
 
                         }else{
                                 //$('.start').show()???
                                 triviaIndex = 0;
                                 resetField ();
                                  poputate();
+                                 timer();
+                                 //timer?
 
                         }
                 
         };
 
+        var number = 10;
+        var intervalId;
+
+        function timer(){ 
+                intervalId = setInterval(decrement, 1000);
+                
+      }
+        function decrement (){
+                number --; 
+                $('#timer').html('The reamining time is: ' + number + ' seconds');
+        }
+        
+        function stopTimer(){
+                number = 10;
+                clearInterval(intervalId);
+                if(number === 0 && triviaIndex < trivia.length){
+                        alert("timere is 0");
+                }
+        }
+
+        $("#stop").on("click", stopTimer);
+        
+        //timer();
+        // I need a stop function that is call when ...
+        
+    
+
+      //when does the timer start? When the stion is populated -- yes?
+      // how do I ensure the timer is restarts for every question?
+
      // Add a listener to the document for dynamically created triviaOptions element
       $(document).on('click', ".triviaOptions", function(){
                 var value = ($(this).attr('data-value'));
                 evaluate(value);
+                
         });
 
         
          $('.start').on("click", function(){
                 poputate();
+                timer();
                 $('.start').hide(); // bring back at the end of the game
 
         });
