@@ -2,19 +2,26 @@
 $("document").ready(function(){
 
        
-        // add picture 
+        // set interval beetween questions...
+        // where should I place the settimeout between questions? would be inefficeient if I was 
+        //to use it everytime I call populate?
+        //the clock must be place on time out as well 
+
+        //create a function that calls these function in a bumdle then place a time out on it....
+
         //reset start button at the end
       
 
 
         trivia= [
         {triviaQuestion: "how do you say CAKE in french", triviaChoices:["galette", "pain", 'gateau', 'ciel'], answer:"gateau"},
-        {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"}
-        // {triviaQuestion: "how do you say SKY in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"ciel"},
-        // {triviaQuestion: "how do you say bird in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"oiseau"}
+        {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"},
+        {triviaQuestion: "how do you say SKY in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"ciel"},
+        {triviaQuestion: "how do you say bird in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"oiseau"}
         ];
 
-        pictures =["assets/images/gateau.jpg", "assets/images/pain.jpg"];
+        pictures =["assets/images/gateau.jpg", "assets/images/pain.jpg", "assets/images/gateau.jpg", "assets/images/pain.jpg"];
+
 
 
         var triviaIndex = 0;
@@ -23,14 +30,14 @@ $("document").ready(function(){
         var number = 10;
         var intervalId;
         
-        // resets questions
+        // resets questions fields
         function  resetField (){ 
         $('.triviaChoices').empty();    
         }
 
 
       //populates question and assign "values" to them 
-      function poputate(){
+      function populate(){
         
                 var arr = trivia[triviaIndex].triviaChoices;
                 var triviaQ = trivia[triviaIndex].triviaQuestion;
@@ -50,18 +57,19 @@ $("document").ready(function(){
                 
         }
 
-        // evaluates function comapares user's value and correct answer and take apporiate actions 
+        // evaluate function comapares user's value and correct answer and take approiate actions 
         function  evaluate(value){
                 var correctAnswer = trivia[triviaIndex].answer;
-                        triviaIndex++;
-                        pictureChange(); // test
-                        console.log(triviaIndex);
+                
+                triviaIndex++;
                         if(value === correctAnswer){
+                                pictureChange();
                                 wins++;
                                 $('#wins').html(wins); // show only at the end of the game?
                                 stopTimer();
                                 console.log("yes");
                          }else{
+                                pictureChange();
                                 losses++;
                                 $('#losses').html(losses); // show only at the end of the game?
                                 stopTimer();
@@ -70,14 +78,15 @@ $("document").ready(function(){
 
                         if(triviaIndex < trivia.length){
                                 resetField ();
-                                poputate(); 
+                                setTimeout(populate, 4000);
+                                //populate();  // interval?
                                 timer();
 
                         }else{
                                
                                 triviaIndex = 0;
                                 resetField ();
-                                 poputate();
+                                 populate(); // interval?
                                  timer();
                                  
                         }
@@ -91,7 +100,7 @@ $("document").ready(function(){
         }
 
 
-        //Decrement function associated with timer
+        //decrement function associated with timer
         function decrement (){
                 number --; 
                 $('#timer').html('The reamining time is: ' + number + ' seconds');
@@ -99,16 +108,17 @@ $("document").ready(function(){
                         stopTimer();
                         triviaIndex++;
                         resetField ();
-                        poputate(); 
+                        poputale(); // poputale is not defined at the end of the game something is off with the index...// interval?
                         timer();
                         losses++;
                         $('#losses').html(losses); // show only at the end of the game?
 
                 }else if(number === 0 && triviaIndex === trivia.length-1){
+                        //that is the end of the game? restart...
                         stopTimer();
                         triviaIndex = 0;
                         resetField ();
-                        poputate();
+                        populate(); // interval?
                         timer();
                         
                 }
@@ -120,13 +130,11 @@ $("document").ready(function(){
                 clearInterval(intervalId);
         }
 
+        // change picture function
         function pictureChange(){
-                $("#image").html("<img src=" + pictures[triviaIndex] + " width='100px'>");
+                $("#image").html("<img src=" + pictures[triviaIndex] + " width='100px'>").fadeOut(4000);
         }
-
-       // setTimeout(pictureChange, 4000);
         
-       // pictureChange();
 
      // Add a listener to the document for dynamically created triviaOptions element
       $(document).on('click', ".triviaOptions", function(){
@@ -137,7 +145,7 @@ $("document").ready(function(){
 
         
          $('.start').on("click", function(){
-                poputate();
+                populate();
                 timer();
                 $('.start').hide(); // bring back at the end of the game
 
