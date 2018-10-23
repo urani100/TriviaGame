@@ -17,7 +17,7 @@ $("document").ready(function(){
         {triviaQuestion: "how do you say CAKE in french", triviaChoices:["galette", "pain", 'gateau', 'ciel'], answer:"gateau"},
         {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"},
         {triviaQuestion: "how do you say SKY in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"ciel"},
-        {triviaQuestion: "how do you say bird in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"oiseau"}
+        {triviaQuestion: "how do you say bird in french", triviaChoices:["pain", "oiseau", 'ciel', 'lumiere'], answer:"oiseau"}
         ];
 
         pictures =["assets/images/gateau.jpg", "assets/images/pain.jpg", "assets/images/gateau.jpg", "assets/images/pain.jpg"];
@@ -40,6 +40,7 @@ $("document").ready(function(){
       function populate(){
         
                 var arr = trivia[triviaIndex].triviaChoices;
+                console.log(trivia[triviaIndex].triviaChoices);
                 var triviaQ = trivia[triviaIndex].triviaQuestion;
                 var correctAnswer = trivia[triviaIndex].answer;
         
@@ -103,18 +104,22 @@ $("document").ready(function(){
         //decrement function associated with timer
         function decrement (){
                 number --; 
-                $('#timer').html('The reamining time is: ' + number + ' seconds');
+                $('#timer').html('The remaining time is: ' + number + ' seconds');
                 if(number === 0 && triviaIndex < trivia.length-1){
+                        losses++; // only takes place 3 times 4th time is not registered. 
+                        $('#losses').html(losses); // show only at the end of the game?
+                        console.log(triviaIndex);
                         stopTimer();
                         triviaIndex++;
                         resetField ();
-                        poputale(); // poputale is not defined at the end of the game something is off with the index...// interval?
+                        populate(); 
                         timer();
-                        losses++;
-                        $('#losses').html(losses); // show only at the end of the game?
 
                 }else if(number === 0 && triviaIndex === trivia.length-1){
+                        losses++; // only takes place 3 times 4th time is not registered. 
+                        $('#losses').html(losses); // show only at the end of the game?
                         //that is the end of the game? restart...
+                        console.log("the game ended");
                         stopTimer();
                         triviaIndex = 0;
                         resetField ();
