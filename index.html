@@ -11,12 +11,38 @@
    
 
     <style>
+        .container{
+            width: 960px;
+            margin: 0 auto 0 auto;
+            border: 1px solid purple;
+        }
+        .innerContainer{
+            width: 600px;
+            height: 600px;
+            margin: 0 auto 0 auto;
+            border: 1px solid blue;
+
+        }
+        .start{
+           width: 300px;
+           height: 100px;
+           position: absolute;
+           top:25%;
+           right: 40%;
+           border: 1px solid greenyellow;
+        }
         .question{
             color: black;
         }
 
         .triviaChoices{
-           color: black;
+           width: 300px;
+           height: 100px;
+           position: absolute;
+           top:25%;
+           right: 40%;
+           border: 1px solid orange;
+           
           
         }
         .hoices{
@@ -31,21 +57,40 @@
     </style>
 </head>
 <body>
-    <button class='start'>START</button>
+    <header>
 
-    <div id="timer"></div>
-    <br>
-    <br>
-    <div id="image"></div>
-    <br>
-    <br>
-    <div><span id="wins"> </span></div>
-    <div><span id="losses"> </span></div>
-    <div><span id="unanswered"> </span></div>
-    <br>
-    <p class='question'></p>
-    <div class='triviaChoices'> <span id="test"> </span></div> 
+    </header>
+    <div class= 'container'>
+        <div class ='innerContainer'>
+                <button class='start'>START</button>
+                <p id="timer"></p>
+                <p class='question'></p>
+                <div class='triviaChoices'> <span id="test"> </span></div> 
+                
+                
+                <div id="image"></div>
+                <br>
+                <br>
+                <div><span id="wins"> </span></div>
+                <div><span id="losses"> </span></div>
+                <div><span id="unanswered"> </span></div>
+                 <br>
+        </div>
+
+    </div>
+    <footer>
+
+    </footer>
         
     
 </body>
 </html>
+
+
+
+
+
+    
+    
+    
+   

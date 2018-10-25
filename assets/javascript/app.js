@@ -1,15 +1,15 @@
 
 $("document").ready(function(){
 
-       
-        // set interval beetween questions...
-        //reset start button at the end?
+// this homework is heavily commented since it has so many steps
+// I wanted to ensure that I unsderstood my choice and remenber why
+
       
         trivia= [
         {triviaQuestion: "how do you say CAKE in french", triviaChoices:["galette", "pain", 'gateau', 'ciel'], answer:"gateau"},
-        {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"}
-        // {triviaQuestion: "how do you say SKY in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"ciel"}
-        // {triviaQuestion: "how do you say bird in french", triviaChoices:["pain", "oiseau", 'ciel', 'lumiere'], answer:"oiseau"}
+        {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"},
+        {triviaQuestion: "how do you say SKY in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"ciel"},
+        {triviaQuestion: "how do you say bird in french", triviaChoices:["pain", "oiseau", 'ciel', 'lumiere'], answer:"oiseau"}
         ];
 
         pictures =["assets/images/gateau.jpg", "assets/images/pain.jpg", "assets/images/element.jpg"];
@@ -36,7 +36,7 @@ $("document").ready(function(){
         
                 var arr = trivia[triviaIndex].triviaChoices;
                 var triviaQ = trivia[triviaIndex].triviaQuestion;
-                var correctAnswer = trivia[triviaIndex].answer;
+                correctAnswer = trivia[triviaIndex].answer; // need it to be blobal
         
                 $(".question").text(triviaQ); // populating question
 
@@ -71,7 +71,7 @@ $("document").ready(function(){
                          }
                 
    
-        };// end of evaluate function
+        };
         
         // happy path next question
         function nextQuestionH(){
@@ -103,20 +103,26 @@ $("document").ready(function(){
         function decrement (){
                 number --; 
                 $('#timer').html('The remaining time is: ' + number + ' seconds');
+
                 if(number === 0 && triviaIndex < trivia.length-1){
                         triviaIndex++;
                         unanswered++;  
                         stopTimer();
-                        $("#timer").html("SORRY YOU ARE OUT OF TIME!!! The correct answer is: "); //+ correctAnswer
+                        $("#timer").html("SORRY YOU ARE OUT OF TIME!!! The correct answer is: " + correctAnswer); 
                         pictureChange(); 
                         setTimeout(nextQuestionA, 4000);                
 
                 }else if(number === 0 && triviaIndex === trivia.length-1){
-                        // why do I have this condition? this is the end of the game NO????
-                         unanswered++; 
-                         $("#timer").html("SORRY YOU ARE OUT OF TIME!!! The correct answer is: " ); //+ correctAnswer
-                         pictureChange(); 
-                        reset();
+                        //Badly written needs a lot of improovement ... was not not sure how to go about it... but it does the job
+
+                        //triviaIndex is not incremented otherwise it would go out of bound
+                        stopTimer();// working in conjunction with the setTimeout
+                        unanswered++; 
+                        $("#timer").html("SORRY YOU ARE OUT OF TIME!!! The correct answer is: " + correctAnswer); 
+                        //pictureChange(); // index is not incremented therefore it would show the wrong picture
+                        $('#image').show();
+                        $("#image").html("<img src=" + pictures[triviaIndex] + " width='500px'>");
+                        setTimeout(reset, 4000); //necessary otherwise picture does not have a chance to show
                 }
         }
 
@@ -143,10 +149,10 @@ $("document").ready(function(){
                 $('#wins').html(wins).show(); // show only at the end of the game
                 $('#losses').html(losses).show(); // show only at the end of the game
                 $('#unanswered').html(unanswered).show(); // show only at the end of the game
-                $('.start').show();
+                $('.start').show(); // show only at the end of the game
         }
 
-        // init function
+        // start function
          $('.start').on("click", function(){
                 populate();
                 timer();
@@ -159,7 +165,7 @@ $("document").ready(function(){
                 unanswered=0;
         });
 
-        // Add a listener to the document for dynamically created triviaOptions element
+        // Add a listener to the document for dynamically created triviaOptions elements
         $(document).on('click', ".triviaOptions", function(){
         var value = ($(this).attr('data-value'));
         evaluate(value);
