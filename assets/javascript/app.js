@@ -27,6 +27,7 @@ $("document").ready(function(){
                 $('.triviaChoices').empty();    
                 $('.question').empty();
                 $('#timer').empty();
+                $('#image').hide();
         }
 
 
@@ -59,28 +60,21 @@ $("document").ready(function(){
                                 stopTimer();
                                 $("#timer").html("YOU ARE CORRECT!!!")
                                 pictureChange(); 
-                                setTimeout(nextQuestion, 10000);
-                                $('#image').hide();
-                                 //Correct!
-                                 // A pause and the picture change takes place here 
-                                 // do I show the picture make the if riviaIndex < trivia.length if statement wait?
-                                 // if I do I need to place it in a function...
-                                 // the same scenario must take place in the decrement function as well...
+                                setTimeout(nextQuestionH, 4000);
                          }else{
                                 losses++;
                                 stopTimer();
-                                $("#timer").html("SORRY THIS IS INCORRECT!!!");
-                                debugger;
+                                $("#timer").html("SORRY THIS IS INCORRECT!!! The correct answer is: " + correctAnswer); 
                                 pictureChange(); 
-                                setTimeout(nextQuestion, 10000);
-                                $('#image').hide();
+                                setTimeout(nextQuestionH, 4000);
+                               // $('#image').hide();
                          }
                 
    
         };// end of evaluate function
         
-
-        function nextQuestion(){
+        // happy path next question
+        function nextQuestionH(){
                 if(triviaIndex < trivia.length){
                         resetField();
                         populate(); 
@@ -92,10 +86,14 @@ $("document").ready(function(){
         }
 
 
+        //alternative path next question
+        // will not use nextQuestionPos here because the condition of the else statements are not the same
+        function nextQuestionA(){
+                resetField ();
+                populate(); 
+                timer();
+        }
 
-
-
-        
         // timer function
         function timer(){ 
                 intervalId = setInterval(decrement, 1000);
@@ -106,20 +104,24 @@ $("document").ready(function(){
                 number --; 
                 $('#timer').html('The remaining time is: ' + number + ' seconds');
                 if(number === 0 && triviaIndex < trivia.length-1){
-                        unanswered++;  
-                        // Out of time / the correct Answer is
-                        stopTimer();
                         triviaIndex++;
-                        resetField ();
-                        populate(); 
-                        timer();
+                        unanswered++;  
+                        stopTimer();
+                        $("#timer").html("SORRY YOU ARE OUT OF TIME!!! The correct answer is: "); //+ correctAnswer
+                        pictureChange(); 
+                        setTimeout(nextQuestionA, 4000);                
 
                 }else if(number === 0 && triviaIndex === trivia.length-1){
+                        // why do I have this condition? this is the end of the game NO????
                          unanswered++; 
-                         // Out of time / the correct Answer is
+                         $("#timer").html("SORRY YOU ARE OUT OF TIME!!! The correct answer is: " ); //+ correctAnswer
+                         pictureChange(); 
                         reset();
                 }
         }
+
+
+
         
         // stop timer function
         function stopTimer(){
@@ -129,6 +131,7 @@ $("document").ready(function(){
 
         // change picture function
         function pictureChange(){
+                $('#image').show();
                 $("#image").html("<img src=" + pictures[triviaIndex-1] + " width='500px'>");
         }
 
