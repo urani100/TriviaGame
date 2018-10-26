@@ -7,14 +7,14 @@ $("document").ready(function(){
 
       
         trivia= [
-        {triviaQuestion: "The Nile River Flows Through", triviaChoices:["Egytpt", "Egypt, Ethiopia and Eritrea", "Egypt & 10 other countries", "Rwanda"], answer:'Egypt & 10 other countries'},
-        {triviaQuestion: "The Yangtze _ _ _ _ _ Long", triviaChoices:["5,080 km", "6,380 km", '6,883 km', '3,380 km'], answer:"6,380 km"},
-        {triviaQuestion: "The longest River in North America is The_ _ _ _ _ _ River", triviaChoices:["Missouri River", "Colorado", "Mackenzie River", "Ohio"], answer:"Missouri River"},
+        {triviaQuestion: "The Nile River Flows Through", triviaChoices:["Egytpt", "Egypt, Ethiopia and Eritrea", "Egypt & 10 other countries", "Rwanda"], answer:"Egypt & 10 other countries"},
+        {triviaQuestion: "The Yangtze River is _ _ _ _ _  Long", triviaChoices:["5,080 km", "6,380 km", '6,883 km', '3,380 km'], answer:"6,380 km"},
+        {triviaQuestion: "The longest River in North America is The_ _ _ _ _ _ River", triviaChoices:["Missouri", "Colorado", "Mackenzie", "Ohio"], answer:"Missouri"},
         {triviaQuestion: "The Loire River is located in", triviaChoices:["Italy", "Switzerland", 'Liechtenstein', 'France'], answer:"France"},
         {triviaQuestion: "The World's Deepest Recorded River is Located in", triviaChoices:["China", "India", 'The U.S.A', 'The Kongo'], answer:"The Kongo"}
         ];
 
-        pictures =["assets/images/nile.png", "assets/images/yangtze.png", "assets/images/Missouri.png", "assets/images/loire.png", "assets/images/kongo.png"];
+        pictures =["assets/images/nile.png", "assets/images/yangtze.png", "assets/images/Missouri.png", "assets/images/loire2.png", "assets/images/kongo2.png"];
 
 
         var triviaIndex = 0;
@@ -38,7 +38,7 @@ $("document").ready(function(){
         
                 var arr = trivia[triviaIndex].triviaChoices;
                 var triviaQ = trivia[triviaIndex].triviaQuestion;
-                correctAnswer = trivia[triviaIndex].answer; // need it to be blobal
+                correctAnswer = trivia[triviaIndex].answer; // must be global
         
                 $(".question").text(triviaQ); // populating question
 
@@ -61,13 +61,13 @@ $("document").ready(function(){
                                 stopTimer();
                                 $(".question").html("CORRECT!")
                                 pictureChange(); 
-                                setTimeout(nextQuestionH, 6000);
+                                setTimeout(nextQuestionH, 9000);
                          }else{
                                 losses++;
                                 stopTimer();
                                 $(".question").html("You are Incorect. The Answer is: " + correctAnswer); 
                                 pictureChange(); 
-                                setTimeout(nextQuestionH, 6000);
+                                setTimeout(nextQuestionH, 9000);
                                // $('#image').hide();
                          }
                 
@@ -103,7 +103,7 @@ $("document").ready(function(){
         //decrement function associated to timer
         function decrement (){
                 number --; 
-                $('#timer').html('The Remaining Time is: ' + number + ' Seconds');
+                $('#timer').html('Your Remaining Time For This Question is: ' + number + ' Seconds');
 
                 if(number === 0 && triviaIndex < trivia.length-1){
                         triviaIndex++;
@@ -111,10 +111,10 @@ $("document").ready(function(){
                         stopTimer();
                         $(".question").html("You are out of time. The Correct Answer is: " + correctAnswer); 
                         pictureChange(); 
-                        setTimeout(nextQuestionA, 6000);                
+                        setTimeout(nextQuestionA, 9000);                
 
                 }else if(number === 0 && triviaIndex === trivia.length-1){
-                        //Badly written needs a lot of improovement ... was not not sure how to go about it... but it does the job
+                        //Needs improovement ... was not not sure how to go about it... but it does the job
 
                         //triviaIndex is not incremented otherwise it would go out of bound
                         stopTimer();// working in conjunction with the setTimeout
@@ -122,13 +122,10 @@ $("document").ready(function(){
                         $(".question").html("You are out of time. The Correct Answer is: " + correctAnswer); 
                         //pictureChange(); // index is not incremented therefore it would show the wrong picture
                         $('#image').show();
-                        $("#image").html("<img src=" + pictures[triviaIndex] + " width='500px'>");
-                        setTimeout(reset, 4000); //necessary otherwise picture does not have a chance to show
+                        $("#image").html("<img src=" + pictures[triviaIndex] + " width='800px'>");
+                        setTimeout(reset, 4000); //necessary otherwise picture does not have a chance to show one last time
                 }
         }
-
-
-
         
         // stop timer function
         function stopTimer(){
@@ -147,9 +144,9 @@ $("document").ready(function(){
                 triviaIndex = 0;
                 stopTimer();
                 resetField ();
-                $('#wins').html('WINS: ' + wins).show(); // show only at the end of the game
-                $('#losses').html('LOSSES: ' +losses).show(); // show only at the end of the game
-                $('#unanswered').html('UNANWERED: ' + unanswered).show(); // show only at the end of the game
+                $('#wins').html('WINS:' + wins).show(); // show only at the end of the game
+                $('#losses').html('LOSSES:' +losses).show(); // show only at the end of the game
+                $('#unanswered').html('UNANSWERED:' + unanswered).show(); // show only at the end of the game
                 $('.start').show(); // show only at the end of the game
         }
 
@@ -170,12 +167,7 @@ $("document").ready(function(){
         $(document).on('click', ".triviaOptions", function(){
         var value = ($(this).attr('data-value'));
         evaluate(value);
-
-        
-});
-
-     
-       
+        });      
 
 })//end of ducument.ready
 
