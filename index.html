@@ -7,22 +7,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/app.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <link rel="stylesheet" type="text/css"  href="assets/css/reset.css"/>
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" /> -->
    
 
     <style>
+        body{
+            background-color: #c7d8c8;
+        }
+
+        header{
+            padding: 50px;
+            background-color: #a9b7c0;
+        }
+
+        footer{
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 15px;
+            background-color: #a9b7c0;
+        }
+
+       
         .container{
             width: 960px;
             margin: 0 auto 0 auto;
             border: 1px solid purple;
+            border-radius: 15px;
+            background-image: url("../../assets/images/carte.jpg");
+            
         }
         .innerContainer{
-            width: 600px;
-            height: 600px;
+            background-color: white;
+            width: 700px;
+            height: 400px;
             margin: 0 auto 0 auto;
             border: 1px solid blue;
+            border-radius: 15px;
+            /* box-shadow: 2px 2px 2px 2px blue; */
 
         }
+
+        
         .start{
            width: 300px;
            height: 100px;
@@ -30,34 +58,52 @@
            top:25%;
            right: 40%;
            border: 1px solid greenyellow;
+           border-radius: 15px;
         }
         .question{
-            color: black;
+            text-align: center;
+            font-size: 30px;
+            color: gray;
+          
+            border: 1px solid greenyellow;
         }
 
-        .triviaChoices{
-           width: 300px;
-           height: 100px;
-           position: absolute;
-           top:25%;
-           right: 40%;
-           border: 1px solid orange;
+        #timer{
+            margin-left: 20px;
+            text-align: left;
+            font-size: 20px;
+            color: gray;
+            border: 1px solid greenyellow;
+
+        }
+
+        .triviaOptions{
+            margin: 8px auto 0 auto;
+            padding: 30px;
+            width: 200px;
+            height: 20px;
+            border: 1px solid orange;
+            border-radius: 15px 50px;
            
-          
+        } 
+        .triviaChoices{
+            text-align: center;
         }
-        .hoices{
-            width: 100px;
-            height: 30px;
-            border: 1px solid olive;
-            border-radius: 30%;
-            background-color: bisque;
-            color: grey;
-        }
+
+        #image{
+            border: 1px solid plum;
+            width: 300px;
+            /*height: 300px; */
+            position: absolute;
+            top:33%;
+            right: 47%;
+        } 
     
     </style>
 </head>
 <body>
     <header>
+        HEADER
 
     </header>
     <div class= 'container'>
@@ -67,8 +113,6 @@
                 <p class='question'></p>
                 <div class='triviaChoices'> <span id="test"> </span></div> 
                 
-                
-                <div id="image"></div>
                 <br>
                 <br>
                 <div><span id="wins"> </span></div>
@@ -76,6 +120,7 @@
                 <div><span id="unanswered"> </span></div>
                  <br>
         </div>
+        <div id="image"></div>
 
     </div>
     <footer>

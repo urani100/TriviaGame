@@ -41,13 +41,25 @@ $("document").ready(function(){
                 $(".question").text(triviaQ); // populating question
 
                 for(var i = 0; i < trivia[triviaIndex].triviaChoices.length; i++){
-                var btn =  $('<button>');
+                var btn =  $('<div>');
                 btn.addClass('triviaOptions'); // used for the onclick
                 btn.attr("data-value", arr[i]); // set the actual value of the button
                 btn.text(arr[i]); // shows the label
-                 $('.triviaChoices').append(btn); // appends the class to html
-                 
-                }
+                $('.triviaChoices').append(btn); // appends the class to html
+                $('.triviaOption').css('width', '300');
+
+                // 'width', '300',  'height' ,'100');
+
+
+
+
+                
+          
+        //    position: absolute;
+        //    top:25%;
+        //    right: 40%;
+        //    border: 1px solid orange;
+              }
                 
         }
 
