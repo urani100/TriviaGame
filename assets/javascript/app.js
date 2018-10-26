@@ -1,8 +1,8 @@
 
 $("document").ready(function(){
 
-// This HW is heavily commented because if its inticate steps
-// I wanted to ensure that I remmember the reasons behind my choices if I revisit it future.
+// This HW is heavily commented because if its inticate steps (I was so lost at one point lol)
+// I want to ensure that I remmember the reasons behind my choices, espacially if I revisit it in the future.
 // This code has only been been tested in Chrome
 
       
@@ -11,10 +11,13 @@ $("document").ready(function(){
         {triviaQuestion: "The Yangtze River is _ _ _ _ _  Long", triviaChoices:["5,080 km", "6,380 km", '6,883 km', '3,380 km'], answer:"6,380 km"},
         {triviaQuestion: "The longest River in North America is The_ _ _ _ _ _ River", triviaChoices:["Missouri", "Colorado", "Mackenzie", "Ohio"], answer:"Missouri"},
         {triviaQuestion: "The Loire River is located in", triviaChoices:["Italy", "Switzerland", 'Liechtenstein', 'France'], answer:"France"},
-        {triviaQuestion: "The World's Deepest Recorded River is Located in", triviaChoices:["China", "India", 'The U.S.A', 'The Kongo'], answer:"The Kongo"}
+        {triviaQuestion: "The World's Deepest Recorded River is Located in", triviaChoices:["China", "India", 'The U.S.A', "The Kongo"], answer:"The Kongo"},
+        {triviaQuestion: "The Amazon River Flows Through Brazil, Peru & _ _ _ _ _ _ _ _", triviaChoices:["Columbia", "Venezuela", "Bolivia", 'Mexico'], answer:"Columbia"},
+        {triviaQuestion: "The Most Sacred River to Hindus in India is The", triviaChoices:["Narmada", "Betwa", "Gange", "Godavari"], answer:"Gange"}
         ];
 
-        pictures =["assets/images/nile.png", "assets/images/yangtze.png", "assets/images/Missouri.png", "assets/images/loire2.png", "assets/images/kongo2.png"];
+        pictures =["assets/images/nile.png", "assets/images/yangtze.png", "assets/images/Missouri.png", 
+                  "assets/images/loire.png", "assets/images/kongo2.png", "assets/images/amazon.png","assets/images/gange.png"];
 
 
         var triviaIndex = 0;

@@ -3,140 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Trivia Game</title>
+    <title>Rivers of the World Trivia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/app.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
     <link rel="stylesheet" type="text/css"  href="assets/css/reset.css"/>
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" /> -->
-   
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 
-    <style>
-        body{
-            /* background-color: #a8d0e6; */
-            background: linear-gradient(#a8d0e6, #e0f4ff, #ffffff, #a8d0e6);
-
-        }
-
-        header{
-            text-align: center;
-            padding: 40px;
-            color: #a9b7c0;
-            /* color: #ba94a4; */
-            background-color: #374785;
-            font-size: 60px;
-            border-bottom: 6px solid #a9b7c0;
-            font-family: 'Playfair Display', serif; 
-            letter-spacing: 7px;
-        }
-
-        footer{
-            text-align: center;
-            width: 100%;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            padding: 5px;
-            color: #a9b7c0;
-            font-size: 14px;
-            background-color: #374785;
-            border-top:  5px solid #a9b7c0;
-            font-family: 'Playfair Display', serif; 
-        }
-
-       
-
-        .container{
-            /* background-image: url("../../assets/images/carte.jpg"); */
-            background-image: url("/Users/ml/Desktop/Bootcamp/homework/TriviaGame/assets/images/carte.jpg");
-            /* background-color: white; */
-            padding-top: 15px;
-            width: 700px;
-            height: 400px;
-            margin: 30px auto 0 auto;
-            border-radius: 15px;
-        }
-
-        
-        .start{
-         
-           width: 300px;
-           height: 100px;
-           position: absolute;
-           top:45%;
-           right: 39%;
-           border: 1px solid #a9b7c0;
-           border-radius: 15px;
-           color: #374785;
-           /* color: #374785; */
-           font-size: 60px;
-           opacity: 0.3;
-           filter: alpha(opacity=50);
-           font-family: 'Playfair Display', serif;
-          
-        }
-        .question{
-            padding: 20px;
-            /* background-color: #ba94a4; */
-            text-align: center;
-            font-size: 30px;
-            color: #374785;
-            font-family: 'Playfair Display', serif;
-        }
-
-        #timer{
-            padding: 10px;
-            text-align: center;
-            font-size: 20px;
-            color: #374785;
-            /* border: 1px solid greenyellow; */
-            font-family: 'Playfair Display', serif;
-
-        }
-
-        .triviaOptions{
-            background-color: #a8d0e6;
-            margin: 10 auto 10 auto;
-            padding: 25px;
-            width: 200px;
-            height: 27px;
-            border: 2px solid #374785;
-            border-radius: 15px;
-            color: #374785;
-            font-size: 20px;  
-            opacity: 0.7;
-            filter: alpha(opacity=50);
-            font-family: 'Playfair Display', serif;
-        } 
-        .triviaChoices{
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-        }
-
-        #image{
-            position: absolute;
-            top: 31%;
-            right: 22%; 
-        } 
-        #wins,
-        #losses,
-        #unanswered{
-            padding: 10px;
-            text-align: center;
-            font-size: 30px;
-            color: #eaedef;
-            letter-spacing: 9px;
-            font-family: 'Playfair Display', serif;
-        }
-
-
-        
-    </style>
 </head>
 <body>
     <header>
-        Rivers of World Trivia 
+        Rivers Of The World Trivia 
 
     </header>
     <div>
@@ -145,27 +23,21 @@
 
     </div>
     <div class= 'container'>
-        <!-- <div class ='innerContainer'></div> -->
                 <button class='start'>START</button>
                 <div class='triviaChoices'> <span id="test"> </span></div> 
                 <br>
                 <br>
-                <p><span id="wins"> </span></p>
-                <div><span id="losses"> </span></div>
+                <div><span id="wins"> </span></div> 
+                <div><span id="losses"> </span></div> 
                 <div><span id="unanswered"> </span></div>
-                 <br>
-        <!-- </div> -->
+                <br>
+                <br>
         <div id="image"></div>
         <br>
         <p id="timer"></p>
-
     </div>
-    <footer>
-        &copy; Urani
-
-    </footer>
-        
-    
+    <footer>&copy; Urani</footer>
+           
 </body>
 </html>
 
