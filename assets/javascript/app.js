@@ -1,18 +1,20 @@
 
 $("document").ready(function(){
 
-// this homework is heavily commented since it has so many steps
-// I wanted to ensure that I unsderstood my choice and remenber why
+// This HW is heavily commented because if its inticate steps
+// I wanted to ensure that I remmember the reasons behind my choices if I revisit it future.
+// This code has only been been tested in Chrome
 
       
         trivia= [
-        {triviaQuestion: "how do you say CAKE in french", triviaChoices:["galette", "pain", 'gateau', 'ciel'], answer:"gateau"},
-        {triviaQuestion: "how do you say COOKIES in french", triviaChoices:["voiture", "bateau", 'gateau', 'bonbon'], answer:"bonbon"},
-        {triviaQuestion: "how do you say SKY in french", triviaChoices:["savon", "oiseau", 'ciel', 'lumiere'], answer:"ciel"},
-        {triviaQuestion: "how do you say bird in french", triviaChoices:["pain", "oiseau", 'ciel', 'lumiere'], answer:"oiseau"}
+        {triviaQuestion: "The Nile River Flows Through", triviaChoices:["Egytpt", "Egypt, Ethiopia and Eritrea", "Egypt & 10 other countries", "Rwanda"], answer:'Egypt & 10 other countries'},
+        {triviaQuestion: "The Yangtze _ _ _ _ _ Long", triviaChoices:["5,080 km", "6,380 km", '6,883 km', '3,380 km'], answer:"6,380 km"},
+        {triviaQuestion: "The longest River in North America is The_ _ _ _ _ _ River", triviaChoices:["Missouri River", "Colorado", "Mackenzie River", "Ohio"], answer:"Missouri River"},
+        {triviaQuestion: "The Loire River is located in", triviaChoices:["Italy", "Switzerland", 'Liechtenstein', 'France'], answer:"France"},
+        {triviaQuestion: "The World's Deepest Recorded River is Located in", triviaChoices:["China", "India", 'The U.S.A', 'The Kongo'], answer:"The Kongo"}
         ];
 
-        pictures =["assets/images/gateau.jpg", "assets/images/pain.jpg", "assets/images/element.jpg"];
+        pictures =["assets/images/nile.png", "assets/images/yangtze.png", "assets/images/Missouri.png", "assets/images/loire.png", "assets/images/kongo.png"];
 
 
         var triviaIndex = 0;
@@ -46,19 +48,6 @@ $("document").ready(function(){
                 btn.attr("data-value", arr[i]); // set the actual value of the button
                 btn.text(arr[i]); // shows the label
                 $('.triviaChoices').append(btn); // appends the class to html
-                $('.triviaOption').css('width', '300');
-
-                // 'width', '300',  'height' ,'100');
-
-
-
-
-                
-          
-        //    position: absolute;
-        //    top:25%;
-        //    right: 40%;
-        //    border: 1px solid orange;
               }
                 
         }
@@ -70,15 +59,15 @@ $("document").ready(function(){
                         if(value === correctAnswer){
                                 wins++;
                                 stopTimer();
-                                $("#timer").html("YOU ARE CORRECT!!!")
+                                $(".question").html("CORRECT!")
                                 pictureChange(); 
-                                setTimeout(nextQuestionH, 4000);
+                                setTimeout(nextQuestionH, 6000);
                          }else{
                                 losses++;
                                 stopTimer();
-                                $("#timer").html("SORRY THIS IS INCORRECT!!! The correct answer is: " + correctAnswer); 
+                                $(".question").html("You are Incorect. The Answer is: " + correctAnswer); 
                                 pictureChange(); 
-                                setTimeout(nextQuestionH, 4000);
+                                setTimeout(nextQuestionH, 6000);
                                // $('#image').hide();
                          }
                 
@@ -114,15 +103,15 @@ $("document").ready(function(){
         //decrement function associated to timer
         function decrement (){
                 number --; 
-                $('#timer').html('The remaining time is: ' + number + ' seconds');
+                $('#timer').html('The Remaining Time is: ' + number + ' Seconds');
 
                 if(number === 0 && triviaIndex < trivia.length-1){
                         triviaIndex++;
                         unanswered++;  
                         stopTimer();
-                        $("#timer").html("SORRY YOU ARE OUT OF TIME!!! The correct answer is: " + correctAnswer); 
+                        $(".question").html("You are out of time. The Correct Answer is: " + correctAnswer); 
                         pictureChange(); 
-                        setTimeout(nextQuestionA, 4000);                
+                        setTimeout(nextQuestionA, 6000);                
 
                 }else if(number === 0 && triviaIndex === trivia.length-1){
                         //Badly written needs a lot of improovement ... was not not sure how to go about it... but it does the job
@@ -130,7 +119,7 @@ $("document").ready(function(){
                         //triviaIndex is not incremented otherwise it would go out of bound
                         stopTimer();// working in conjunction with the setTimeout
                         unanswered++; 
-                        $("#timer").html("SORRY YOU ARE OUT OF TIME!!! The correct answer is: " + correctAnswer); 
+                        $(".question").html("You are out of time. The Correct Answer is: " + correctAnswer); 
                         //pictureChange(); // index is not incremented therefore it would show the wrong picture
                         $('#image').show();
                         $("#image").html("<img src=" + pictures[triviaIndex] + " width='500px'>");
@@ -150,7 +139,7 @@ $("document").ready(function(){
         // change picture function
         function pictureChange(){
                 $('#image').show();
-                $("#image").html("<img src=" + pictures[triviaIndex-1] + " width='500px'>");
+                $("#image").html("<img src=" + pictures[triviaIndex-1] + " width='800px'>");
         }
 
         // reset function
@@ -158,9 +147,9 @@ $("document").ready(function(){
                 triviaIndex = 0;
                 stopTimer();
                 resetField ();
-                $('#wins').html(wins).show(); // show only at the end of the game
-                $('#losses').html(losses).show(); // show only at the end of the game
-                $('#unanswered').html(unanswered).show(); // show only at the end of the game
+                $('#wins').html('WINS: ' + wins).show(); // show only at the end of the game
+                $('#losses').html('LOSSES: ' +losses).show(); // show only at the end of the game
+                $('#unanswered').html('UNANWERED: ' + unanswered).show(); // show only at the end of the game
                 $('.start').show(); // show only at the end of the game
         }
 

@@ -7,123 +7,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/app.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
     <link rel="stylesheet" type="text/css"  href="assets/css/reset.css"/>
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" /> -->
    
 
     <style>
         body{
-            background-color: #c7d8c8;
+            /* background-color: #a8d0e6; */
+            background: linear-gradient(#a8d0e6, #e0f4ff, #ffffff, #a8d0e6);
+
         }
 
         header{
-            padding: 50px;
-            background-color: #a9b7c0;
+            text-align: left;
+            padding: 40px;
+            color: #a9b7c0;
+            /* color: #ba94a4; */
+            background-color: #374785;
+            font-size: 60px;
+            border-bottom: 6px solid #a9b7c0;
+            font-family: 'Playfair Display', serif; 
         }
 
         footer{
+            text-align: center;
             width: 100%;
             position: absolute;
             bottom: 0;
             left: 0;
-            padding: 15px;
-            background-color: #a9b7c0;
+            padding: 5px;
+            color: #a9b7c0;
+            font-size: 14px;
+            background-color: #374785;
+            border-top:  5px solid #a9b7c0;
+            font-family: 'Playfair Display', serif; 
         }
 
        
-        .container{
+        /* .container{
             width: 960px;
             margin: 0 auto 0 auto;
             border: 1px solid purple;
             border-radius: 15px;
-            background-image: url("../../assets/images/carte.jpg");
+            background-image: url("../../assets/images/carte.jpg"); 
             
-        }
-        .innerContainer{
-            background-color: white;
+            
+        } */
+
+        .container{
+            /* background-image: url("../../assets/images/carte.jpg"); */
+            background-image: url("/Users/ml/Desktop/Bootcamp/homework/TriviaGame/assets/images/carte.jpg");
+            /* background-color: white; */
+            padding-top: 15px;
             width: 700px;
             height: 400px;
-            margin: 0 auto 0 auto;
-            border: 1px solid blue;
+            margin: 30px auto 0 auto;
+            /* border: 0.5px solid #374785; */
             border-radius: 15px;
-            /* box-shadow: 2px 2px 2px 2px blue; */
-
         }
 
         
         .start{
+           /* background-color: #ba94a4; */
            width: 300px;
            height: 100px;
            position: absolute;
-           top:25%;
-           right: 40%;
-           border: 1px solid greenyellow;
+           top:45%;
+           right: 39%;
+           border: 1px solid #a9b7c0;
            border-radius: 15px;
+           color: #374785;
+           /* color: #374785; */
+           font-size: 60px;
+           opacity: 0.3;
+           filter: alpha(opacity=50);
+           font-family: 'Playfair Display', serif;
+          
         }
         .question{
+            padding: 20px;
+            /* background-color: #ba94a4; */
             text-align: center;
             font-size: 30px;
-            color: gray;
-          
-            border: 1px solid greenyellow;
+            color: #374785;
+            font-family: 'Playfair Display', serif;
         }
 
         #timer{
-            margin-left: 20px;
-            text-align: left;
+            padding: 10px;
+            text-align: center;
             font-size: 20px;
-            color: gray;
-            border: 1px solid greenyellow;
+            color: #374785;
+            /* border: 1px solid greenyellow; */
+            font-family: 'Playfair Display', serif;
 
         }
 
         .triviaOptions{
-            margin: 8px auto 0 auto;
-            padding: 30px;
+            background-color: #a8d0e6;
+            margin: 10 auto 10 auto;
+            padding: 25px;
             width: 200px;
-            height: 20px;
-            border: 1px solid orange;
-            border-radius: 15px 50px;
-           
+            height: 27px;
+            border: 2px solid #374785;
+            border-radius: 15px;
+            color: #374785;
+            font-size: 20px;  
+            opacity: 0.7;
+            filter: alpha(opacity=50);
+            font-family: 'Playfair Display', serif;
         } 
         .triviaChoices{
             text-align: center;
+            font-family: 'Playfair Display', serif;
         }
 
         #image{
-            border: 1px solid plum;
-            width: 300px;
-            /*height: 300px; */
             position: absolute;
-            top:33%;
-            right: 47%;
+            top: 31%;
+            right: 22%; 
         } 
-    
+        #wins,
+        #losses,
+        #unanswered{
+            padding: 10px;
+            text-align: center;
+            font-size: 30px;
+            color: #eaedef;
+            letter-spacing: 9px;
+            font-family: 'Playfair Display', serif;
+        }
+
+
+        
     </style>
 </head>
 <body>
     <header>
-        HEADER
+        Rivers of World Trivia 
 
     </header>
+    <div>
+            
+            <p class='question'></p>
+
+    </div>
     <div class= 'container'>
-        <div class ='innerContainer'>
+        <!-- <div class ='innerContainer'></div> -->
                 <button class='start'>START</button>
-                <p id="timer"></p>
-                <p class='question'></p>
                 <div class='triviaChoices'> <span id="test"> </span></div> 
-                
                 <br>
                 <br>
                 <div><span id="wins"> </span></div>
                 <div><span id="losses"> </span></div>
                 <div><span id="unanswered"> </span></div>
                  <br>
-        </div>
+        <!-- </div> -->
         <div id="image"></div>
+        <p id="timer"></p>
 
     </div>
     <footer>
+        &copy; Urani
 
     </footer>
         
