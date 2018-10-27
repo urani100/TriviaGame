@@ -29,8 +29,7 @@
     }
 
     .container{
-        /* background-image: url("../../assets/images/carte.jpg"); */
-        background-image: url("/Users/ml/Desktop/Bootcamp/homework/TriviaGame/assets/images/carte.jpg");
+        background-image: url("../../assets/images/carte.jpg");
         padding-top: 15px;
         width: 700px;
         height: 400px;
