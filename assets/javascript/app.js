@@ -125,7 +125,7 @@ $("document").ready(function(){
                         $(".question").html("You are out of time. The Correct Answer is: " + correctAnswer); 
                         //pictureChange(); // index is not incremented therefore it would show the wrong picture
                         $('#image').show();
-                        $("#image").html("<img src=" + pictures[triviaIndex] + " width='800px'>");
+                        $("#image").html("<img src=" + pictures[triviaIndex] + "width='800px'>");
                         setTimeout(reset, 4000); //necessary otherwise picture does not have a chance to show one last time
                 }
         }
